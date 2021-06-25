@@ -1,0 +1,24 @@
+{
+  "name": "csci5709-backend",
+  "version": "1.0.0",
+  "description": "creating api using node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gr997570/CSCI5709-Backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gr997570/CSCI5709-Backend/issues"
+  },
+  "homepage": "https://github.com/gr997570/CSCI5709-Backend#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
