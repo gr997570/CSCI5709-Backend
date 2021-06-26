@@ -45,6 +45,8 @@ This will add the details of user passed in request body.
 
 GET		https://csci5709-tutorial-backend.herokuapp.com/user/:id
 This will fetch the user with particular id passed in request parameter.
+
+Please note, for POST request, id will be auto-generated otherwise 400 will be returned.
 ```
 
 ## Deployment
