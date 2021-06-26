@@ -77,7 +77,7 @@ router.get('/users', (req, res) =>{
 });
 ```
 
-The code above was created by adapting the code in - [Tutorial 5](https://dal.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8095b86d-3584-4a62-8326-ad4f014362e4&start=undefined) as shown below: 
+The code above was created by adapting the code in [Tutorial 5](https://dal.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8095b86d-3584-4a62-8326-ad4f014362e4&start=undefined) as shown below: 
 
 ```
 router.get('/users', (req, res) =>{
@@ -102,7 +102,7 @@ router.get('/users', (req, res) =>{
 - [Tutorial 5](https://dal.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=8095b86d-3584-4a62-8326-ad4f014362e4&start=undefined)'s code was modified by Gurleen Kaur Saluja.
 
 
-Lines 10 - 26
+Lines 20 - 26
 ---------------
 
 ```
