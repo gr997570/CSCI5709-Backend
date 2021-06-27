@@ -34,7 +34,7 @@ try{
       "picture": req.body.picture
     };
     users.push(jsonObj);
-    return res.status(200).json({
+    return res.status(201).json({
       message: "User added",
       success: true,
     });
@@ -45,7 +45,7 @@ try{
         if(req.params.id !== req.body.id){
           return res.status(400).json({
             message: "id value mismatch for request parameter and request body!",
-            success: true,
+            success: false,
           });
         }
         if(req.body.lastName)
