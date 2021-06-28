@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const users = require('../data/users');
 const {v4:uuid} = require('uuid');
 const jsonParser = bodyParser.json();
+var isBodyValid = true;
 try{
   router.get('/users', (req, res) =>{
     if(!users || !users.length){
@@ -28,12 +29,19 @@ try{
       }
       jsonObj = {
         "id": uuid(),
-        "lastName": req.body.lastName,
-        "firstName": req.body.firstName,
-        "email": req.body.email,
-        "title": req.body.title,
-        "picture": req.body.picture
+        "lastName": "",
+        "firstName": "",
+        "email": "",
+        "title": "",
+        "picture": ""
       };
+      validateBody(req, jsonObj);
+      if(!isBodyValid){
+        return res.status(400).json({
+          message: "JSON value is empty.",
+          success: false,
+        });
+      }
       users.push(jsonObj);
       return res.status(201).json({
         message: "User added",
@@ -55,51 +63,25 @@ try{
               success: false,
             });
           }
-          if(req.body.lastName != undefined && req.body.lastName !== '')
-            jsonObj.lastName = req.body.lastName;
-          else if (req.body.lastName === '')
-          return res.status(400).json({
-            message: "JSON value is empty.",
-            success: false,
-          });
-          if(req.body.firstName != undefined && req.body.firstName !== '')
-            jsonObj.firstName = req.body.firstName;
-          else if (req.body.firstName === '')
+          validateBody(req, jsonObj);
+          if(!isBodyValid){
             return res.status(400).json({
               message: "JSON value is empty.",
               success: false,
-            });
-          if(req.body.email != undefined && req.body.email !== '')
-            jsonObj.email = req.body.email;
-          else if (req.body.email === '')
-            return res.status(400).json({
-              message: "JSON value is empty.",
-              success: false,
-            });
-          if(req.body.title != undefined && req.body.title !== '')
-            jsonObj.title = req.body.title;
-          else if (req.body.title === '')
-            return res.status(400).json({
-              message: "JSON value is empty.",
-              success: false,
-            });
-          if(req.body.picture != undefined && req.body.picture !== '')
-            jsonObj.picture = req.body.picture;
-          else if (req.body.picture === '')
-            return res.status(400).json({
-              message: "JSON value is empty.",
-              success: false,
-            });
-            return res.status(200).json({
-              message: "User updated",
-              success: true,
             });
           }
+          return res.status(200).json({
+            message: "User updated",
+            success: true,
+          });
         }
+      }
+      else{
         return res.status(400).json({
           message: "Request Body is empty.",
           success: false,
         });
+      }
     });
     if(!result || !result.length){
       return res.status(404).json({
@@ -132,5 +114,43 @@ catch(err){
     message: "Internal server error",
     success: false,
   });
+}
+
+function validateBody(req, jsonObj){
+  if(req.body.lastName != undefined && req.body.lastName !== ''){
+    isBodyValid = true;
+    jsonObj.lastName = req.body.lastName;
+  }
+  else if (req.body.lastName === ''){
+    isBodyValid = false;
+  }
+  if(req.body.firstName != undefined && req.body.firstName !== ''){
+    jsonObj.firstName = req.body.firstName;
+    isBodyValid = true;
+  }
+  else if (req.body.firstName === ''){
+    isBodyValid = false;
+  }
+  if(req.body.email != undefined && req.body.email !== ''){
+    jsonObj.email = req.body.email;
+    isBodyValid = true;
+  }
+  else if (req.body.email === ''){
+    isBodyValid = false;
+  }
+  if(req.body.title != undefined && req.body.title !== ''){
+    jsonObj.title = req.body.title;
+    isBodyValid = true;
+  }
+  else if (req.body.title === ''){
+    isBodyValid = false;
+  }
+  if(req.body.picture != undefined && req.body.picture !== ''){
+    jsonObj.picture = req.body.picture;
+    isBodyValid = true;
+  }
+  else if (req.body.picture === ''){
+    isBodyValid = false;
+  }
 }
 module.exports = router;
