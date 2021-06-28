@@ -19,48 +19,64 @@ try{
     });
   });
   router.post('/add', jsonParser, (req, res) => {
-    if(req.body.id){
-      return res.status(400).json({
-        message: "Id not required. It will be auto-generated.",
+    if(req.body){
+      if(req.body.id){
+        return res.status(400).json({
+          message: "Id not required. It will be auto-generated.",
+          success: false,
+        });
+      }
+      jsonObj = {
+        "id": uuid(),
+        "lastName": req.body.lastName,
+        "firstName": req.body.firstName,
+        "email": req.body.email,
+        "title": req.body.title,
+        "picture": req.body.picture
+      };
+      users.push(jsonObj);
+      return res.status(201).json({
+        message: "User added",
+        success: true,
+      });
+    }
+    else {
+      return res.status(204).json({
+        message: "Request Body is empty.",
         success: false,
       });
     }
-    jsonObj = {
-      "id": uuid(),
-      "lastName": req.body.lastName,
-      "firstName": req.body.firstName,
-      "email": req.body.email,
-      "title": req.body.title,
-      "picture": req.body.picture
-    };
-    users.push(jsonObj);
-    return res.status(201).json({
-      message: "User added",
-      success: true,
-    });
   });
   router.put('/update/:id', jsonParser, (req, res) => {
     const result = users.filter(jsonObj => {
-      if(jsonObj.id === req.params.id){
-        if(req.body.id && req.params.id !== req.body.id){
-          return res.status(400).json({
-            message: "id value mismatch for request parameter and request body!",
-            success: false,
-          });
+      if(req.body){
+        if(jsonObj.id === req.params.id){
+          if(req.body.id && req.params.id !== req.body.id){
+            return res.status(400).json({
+              message: "id value mismatch for request parameter and request body!",
+              success: false,
+            });
+          }
+          if(req.body.lastName)
+            jsonObj.lastName = req.body.lastName;
+          if(req.body.firstName)
+            jsonObj.firstName = req.body.firstName;
+          if(req.body.email)
+            jsonObj.email = req.body.email;
+          if(req.body.title)
+            jsonObj.title = req.body.title;
+          if(req.body.picture)
+            jsonObj.picture = req.body.picture;
+            return res.status(200).json({
+              message: "User updated",
+              success: true,
+            });
+          }
         }
-        if(req.body.lastName)
-          jsonObj.lastName = req.body.lastName;
-        if(req.body.firstName)
-          jsonObj.firstName = req.body.firstName;
-        if(req.body.email)
-          jsonObj.email = req.body.email;
-        if(req.body.title)
-          jsonObj.title = req.body.title;
-        if(req.body.picture)
-          jsonObj.picture = req.body.picture;
-          return res.status(200).json({
-            message: "User updated",
-            success: true,
+        else {
+          return res.status(204).json({
+            message: "Request Body is empty.",
+            success: false,
           });
         }
     });
