@@ -19,7 +19,7 @@ try{
     });
   });
   router.post('/add', jsonParser, (req, res) => {
-    if(req.body.length > 0) {
+    if(Object.keys(req.body).length > 0) {
       if(req.body.id){
         return res.status(400).json({
           message: "Id not required. It will be auto-generated.",
@@ -47,7 +47,7 @@ try{
   });
   router.put('/update/:id', jsonParser, (req, res) => {
     const result = users.filter(jsonObj => {
-      if(req.body.length > 0) {
+      if(Object.keys(req.body).length > 0) {
         if(jsonObj.id === req.params.id){
           if(req.body.id && req.params.id !== req.body.id){
             return res.status(400).json({
