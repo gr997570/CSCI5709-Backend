@@ -48,23 +48,23 @@ This will fetch the user with particular id passed in request parameter.
 
 Please note, for POST request, id will be auto-generated otherwise 400 will be returned.
 
-Method			Validation														STATUS
-GET				Users retrieved													200
-				Users not found													404
-				Internal Server Error											500
+Method			Validation							STATUS
+GET			Users retrieved							200
+			Users not found							404
+			Internal Server Error						500
 				
-POST			User Added														201
-				Id not required. It will be auto-generated.						400
-				Internal Server Error											500
+POST			User Added							201
+			Id not required. It will be auto-generated.			400
+			Internal Server Error						500
 				
-PUT				User Updated													200
-				Id value mismatch for request parameter and request body!		400
-				User not found for update										404
-				Internal Server Error											500
+PUT			User Updated							200
+			Id value mismatch for request parameter and request body!	400
+			User not found for update					404
+			Internal Server Error						500
 				
-GET/:id			Users retrieved													200
-				User not found with id											404
-				Internal Server Error											500
+GET/:id			Users retrieved							200
+			User not found with id						404
+			Internal Server Error						500
 ```
 
 ## Deployment
