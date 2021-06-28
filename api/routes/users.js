@@ -19,7 +19,7 @@ try{
     });
   });
   router.post('/add', jsonParser, (req, res) => {
-    if(req.body){
+    if(req.body.length > 0) {
       if(req.body.id){
         return res.status(400).json({
           message: "Id not required. It will be auto-generated.",
@@ -40,16 +40,14 @@ try{
         success: true,
       });
     }
-    else {
-      return res.status(204).json({
-        message: "Request Body is empty.",
-        success: false,
-      });
-    }
+    return res.status(400).json({
+      message: "Request Body is empty.",
+      success: false,
+    });
   });
   router.put('/update/:id', jsonParser, (req, res) => {
     const result = users.filter(jsonObj => {
-      if(req.body){
+      if(req.body.length > 0) {
         if(jsonObj.id === req.params.id){
           if(req.body.id && req.params.id !== req.body.id){
             return res.status(400).json({
@@ -73,12 +71,10 @@ try{
             });
           }
         }
-        else {
-          return res.status(204).json({
-            message: "Request Body is empty.",
-            success: false,
-          });
-        }
+        return res.status(400).json({
+          message: "Request Body is empty.",
+          success: false,
+        });
     });
     if(!result || !result.length){
       return res.status(404).json({
