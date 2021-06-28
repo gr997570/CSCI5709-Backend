@@ -55,10 +55,12 @@ GET			Users retrieved							200
 				
 POST			User Added							201
 			Id not required. It will be auto-generated.			400
+			Request body is empty.						400
 			Internal Server Error						500
 				
 PUT			User Updated							200
 			Id value mismatch for request parameter and request body!	400
+			Request body is empty.						400
 			User not found for update					404
 			Internal Server Error						500
 				
