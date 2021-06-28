@@ -125,6 +125,7 @@ function validateBody(req, jsonObj){
   }
   else if (req.body.lastName === ''){
     isBodyValid = false;
+    return;
   }
   if(req.body.firstName != undefined && req.body.firstName !== ''){
     jsonObj.firstName = req.body.firstName;
@@ -132,6 +133,7 @@ function validateBody(req, jsonObj){
   }
   else if (req.body.firstName === ''){
     isBodyValid = false;
+    return;
   }
   if(req.body.email != undefined && req.body.email !== ''){
     jsonObj.email = req.body.email;
@@ -139,6 +141,7 @@ function validateBody(req, jsonObj){
   }
   else if (req.body.email === ''){
     isBodyValid = false;
+    return;
   }
   if(req.body.title != undefined && req.body.title !== ''){
     jsonObj.title = req.body.title;
@@ -146,6 +149,7 @@ function validateBody(req, jsonObj){
   }
   else if (req.body.title === ''){
     isBodyValid = false;
+    return;
   }
   if(req.body.picture != undefined && req.body.picture !== ''){
     jsonObj.picture = req.body.picture;
@@ -153,6 +157,7 @@ function validateBody(req, jsonObj){
   }
   else if (req.body.picture === ''){
     isBodyValid = false;
+    return;
   }
 }
 module.exports = router;
