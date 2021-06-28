@@ -61,6 +61,7 @@ POST			User Added							201
 PUT			User Updated							200
 			Id value mismatch for request parameter and request body!	400
 			Request body is empty.						400
+			JSON value is empty.						400
 			User not found for update					404
 			Internal Server Error						500
 				
