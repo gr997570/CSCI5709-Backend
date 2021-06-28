@@ -55,16 +55,41 @@ try{
               success: false,
             });
           }
-          if(req.body.lastName)
+          if(req.body.lastName != undefined && req.body.lastName !== '')
             jsonObj.lastName = req.body.lastName;
-          if(req.body.firstName)
+          else if (req.body.lastName === '')
+          return res.status(400).json({
+            message: "JSON value is empty.",
+            success: false,
+          });
+          if(req.body.firstName != undefined && req.body.firstName !== '')
             jsonObj.firstName = req.body.firstName;
-          if(req.body.email)
+          else if (req.body.firstName === '')
+            return res.status(400).json({
+              message: "JSON value is empty.",
+              success: false,
+            });
+          if(req.body.email != undefined && req.body.email !== '')
             jsonObj.email = req.body.email;
-          if(req.body.title)
+          else if (req.body.email === '')
+            return res.status(400).json({
+              message: "JSON value is empty.",
+              success: false,
+            });
+          if(req.body.title != undefined && req.body.title !== '')
             jsonObj.title = req.body.title;
-          if(req.body.picture)
+          else if (req.body.title === '')
+            return res.status(400).json({
+              message: "JSON value is empty.",
+              success: false,
+            });
+          if(req.body.picture != undefined && req.body.picture !== '')
             jsonObj.picture = req.body.picture;
+          else if (req.body.picture === '')
+            return res.status(400).json({
+              message: "JSON value is empty.",
+              success: false,
+            });
             return res.status(200).json({
               message: "User updated",
               success: true,
