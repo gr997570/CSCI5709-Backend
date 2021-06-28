@@ -42,7 +42,7 @@ try{
   router.put('/update/:id', jsonParser, (req, res) => {
     const result = users.filter(jsonObj => {
       if(jsonObj.id === req.params.id){
-        if(req.params.id !== req.body.id){
+        if(req.body.id && req.params.id !== req.body.id){
           return res.status(400).json({
             message: "id value mismatch for request parameter and request body!",
             success: false,
