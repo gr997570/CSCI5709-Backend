@@ -48,10 +48,12 @@ try{
         success: true,
       });
     }
-    return res.status(400).json({
-      message: "Request Body is empty.",
-      success: false,
-    });
+    else{
+      return res.status(400).json({
+        message: "Request Body is empty.",
+        success: false,
+      });
+    }
   });
   router.put('/update/:id', jsonParser, (req, res) => {
     const result = users.filter(jsonObj => {
